@@ -184,3 +184,17 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+data/hiertext/gt
+data/hiertext/test
+data/hiertext/train
+data/hiertext/validation
+
+
+data/sbernotes/images
+data/sbernotes/annotations_test.json
+data/sbernotes/annotations_train.json
+data/sbernotes/annotations_val.json
+
