@@ -198,3 +198,5 @@ data/sbernotes/annotations_test.json
 data/sbernotes/annotations_train.json
 data/sbernotes/annotations_val.json
 
+
+/evaluation/ollama.py
