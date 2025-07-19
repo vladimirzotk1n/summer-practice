@@ -39,8 +39,8 @@ def ollama_client(model, api_key, base_url, **kwargs):
     return query_ollama
 
 
-api_url = "http://qwenvl.ml.n19.int.norsi-trans.ru/v1/"
-api_key = "pee-pee-poo-poo"
+api_url = "hurl"
+api_key = "ley"
 model = "Qwen/Qwen2.5-VL-7B-Instruct-AWQ"
 prompt = (
     "Extract all text from the image exactly as it appears visually, "
