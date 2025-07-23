@@ -1,6 +1,5 @@
 import json
 import os
-import re
 from pathlib import Path
 
 def to_OCRBench(df, output_json, dataset_name):
@@ -26,7 +25,3 @@ def to_OCRBench(df, output_json, dataset_name):
 
     with open(output_json, 'w', encoding='utf-8') as f_out:
         json.dump(data, f_out, indent=4, ensure_ascii=False)
-
-
-# data = pd.read_csv('sorted_train.csv')
-# to_OCRBench(data, 'hiertext_train.json', 'hiertext')

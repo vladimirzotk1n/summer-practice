@@ -33,15 +33,10 @@ def f1_score(pred, gt):
     if pred_sum == 0 or gt_sum == 0:
         return 0.0
 
-
     recall = sum(min(pred_counts[word], gt_counts[word]) for word in units) / gt_sum
     precision = sum(min(pred_counts[word], gt_counts[word]) for word in units) / pred_sum
 
     return 2 * precision * recall / (precision + recall)
-
-
-
-
 
 
 # Метрика из OmniDocBench:

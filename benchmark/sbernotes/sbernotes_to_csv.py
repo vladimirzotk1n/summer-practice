@@ -4,7 +4,6 @@ import numpy as np
 from collections import defaultdict
 from benchmark.sorting_simple import get_sorted_order_simple
 import csv
-from pathlib import Path
 
 
 def polygon_to_bbox(polygon):
@@ -13,6 +12,7 @@ def polygon_to_bbox(polygon):
     return [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]
 
 
+# С сортировкой боксов
 def transform_sbernotes_to_csv(json_path, csv_path):
 
     with open(json_path, "r", encoding="utf-8") as f:
@@ -41,7 +41,6 @@ def transform_sbernotes_to_csv(json_path, csv_path):
                 if text is None:
                     continue
                 bbox_coords = polygon_to_bbox(polygon)
-                # boxes.append([bbox_coords, text])
                 boxes.append(bbox_coords)
 
                 valid_anns.append(ann)
@@ -70,54 +69,3 @@ def transform_sbernotes_to_csv(json_path, csv_path):
 
         for filename, text in image_text_mapping.items():
             writer.writerow([filename, text])
-
-
-
-
-
-def transform_sbernotes_to_csv_simple(json_path, csv_path):
-
-    with open(json_path, "r", encoding="utf-8") as f:
-        annotation = json.load(f)
-
-    image_id_to_filename = {img['id']: img['file_name'] for img in annotation['images']}
-
-    annotations_by_image = defaultdict(list)
-    for ann in annotation['annotations']:
-        annotations_by_image[ann['image_id']].append(ann)
-
-
-
-    image_text_mapping = {}
-
-    for image_id, anns in annotations_by_image.items():
-        filename = image_id_to_filename[image_id]
-
-        valid_anns = []
-
-        for ann in anns:
-            try:
-                text = ann["attributes"]["translation"]
-                if text is None:
-                    continue
-                valid_anns.append(ann)
-            except (KeyError, IndexError):
-                continue
-
-        texts = []
-        for ann in valid_anns:
-            text = ann["attributes"]["translation"]
-            if text:
-                texts.append(text.strip())
-
-        full_text = " ".join(texts)
-        image_text_mapping[filename] = full_text
-
-
-    with open(csv_path, "w", encoding="utf-8", newline="") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(["image", "text"])  # Заголовки столбцов
-
-        for filename, text in image_text_mapping.items():
-            writer.writerow([filename, text])
-

@@ -1,5 +1,4 @@
-from hiertext_to_csv import transform_hiertext_to_csv, transform_hiertext_to_csv_sorted
-import csv
+from hiertext_to_csv import transform_hiertext_to_csv_sorted
 from pathlib import Path
 import pandas as pd
 from benchmark.csv_to_ocrbench import to_OCRBench
@@ -21,9 +20,9 @@ val_df_path   = base_dir / "sorted_val.csv"
 
 # Преобразуем все в dataset с колонками image и text
 
-transform_hiertext_to_csv(train_json_path, train_image_path, train_df_path)
-transform_hiertext_to_csv(test_json_path, test_image_path, test_df_path)
-transform_hiertext_to_csv(val_json_path, val_image_path, val_df_path)
+transform_hiertext_to_csv_sorted(train_json_path, train_image_path, train_df_path)
+transform_hiertext_to_csv_sorted(test_json_path, test_image_path, test_df_path)
+transform_hiertext_to_csv_sorted(val_json_path, val_image_path, val_df_path)
 
 # Переводим в отдельные бенчмарки
 

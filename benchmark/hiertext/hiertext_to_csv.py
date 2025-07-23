@@ -5,9 +5,8 @@ import numpy as np
 from benchmark.sorting_simple import get_sorted_order_simple
 
 
-"""
-Без сортировки боксов
-"""
+
+# Без сортировки боксов
 def transform_hiertext_to_csv(json_path, image_folder, csv_path):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -43,15 +42,7 @@ def transform_hiertext_to_csv(json_path, image_folder, csv_path):
             filepath = filename + ".jpg"
             writer.writerow([filepath, text])
 
-
-
-
-
-
-
-
-
-
+# С сортировкой боксов
 def transform_hiertext_to_csv_sorted(json_path, image_base_path, csv_path, legible=True):
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -87,9 +78,6 @@ def transform_hiertext_to_csv_sorted(json_path, image_base_path, csv_path, legib
 
         if not boxes:
             continue
-
-        box_text_pairs = [(box, text) for box, text in zip(boxes, texts)]
-
 
         sorted_idx = get_sorted_order_simple(np.array(boxes))
 
